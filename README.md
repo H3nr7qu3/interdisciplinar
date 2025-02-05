@@ -4,7 +4,7 @@ O software busca analisar imagens provenientes de uma câmera e identificar os o
 
 O objetivo principal do projeto é auxiliar deficientes visuais a realizar tarefas simples, aumentando sua autonomia.
 
-Autores:
+## Autores:
 - Antonny Gabriel
 - Gustavo Segheto
 - Matheus Henrique
