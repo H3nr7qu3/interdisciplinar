@@ -1,4 +1,5 @@
 package DAO;
+
 import java.io.*;
 
 import java.net.*;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class ConexaoSockets {
+
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private BufferedReader input;
@@ -49,6 +51,7 @@ public class ConexaoSockets {
     }
 
     public List<String> receiveMessage() throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String line;
         ArrayList<String> list = new ArrayList<>();
 
