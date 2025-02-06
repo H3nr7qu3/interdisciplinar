@@ -51,6 +51,7 @@
               <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelSubtitulo" min="-2" max="-2" attributes="0"/>
+
               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
               <Component id="jPanelInformacoes" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
