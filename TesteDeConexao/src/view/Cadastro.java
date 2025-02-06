@@ -157,7 +157,9 @@ public class Cadastro extends javax.swing.JFrame {
         String senha = jTextFieldSenha.getText();
 
         usuario.createUsuario(new Usuario(nome, email, senha));
-        
+        View view = new View();
+        view.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
