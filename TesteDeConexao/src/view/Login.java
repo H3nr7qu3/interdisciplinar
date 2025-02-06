@@ -110,7 +110,7 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanelInformacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 360, 170));
 
-        setSize(new java.awt.Dimension(400, 422));
+        setSize(new java.awt.Dimension(416, 408));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarActionPerformed

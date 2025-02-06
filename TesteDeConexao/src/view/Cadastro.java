@@ -129,7 +129,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, 20));
 
-        setBounds(0, 0, 400, 502);
+        setBounds(0, 0, 416, 488);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed

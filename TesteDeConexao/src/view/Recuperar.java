@@ -129,7 +129,7 @@ public class Recuperar extends javax.swing.JFrame {
 
         getContentPane().add(jPanelInformacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 360, 260));
 
-        setBounds(0, 0, 400, 422);
+        setBounds(0, 0, 416, 408);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarActionPerformed
