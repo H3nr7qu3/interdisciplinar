@@ -48,6 +48,8 @@ public class Cadastro extends javax.swing.JFrame {
         jLabelTitulo.setText("Cadastro");
         jLabelTitulo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jPanelInformacoes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabelNome.setText("Nome");
 
         jTextFieldNome.setToolTipText("");

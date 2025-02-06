@@ -68,6 +68,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jPanelInformacoes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jTextFieldEmail.setToolTipText("");
 
         jLabelEmail.setText("Email");
