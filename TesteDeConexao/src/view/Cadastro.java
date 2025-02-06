@@ -4,12 +4,16 @@
  */
 package view;
 
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 /**
  *
  * @author matheus
  */
 public class Cadastro extends javax.swing.JFrame {
-
+    UsuarioDAO usuario = new UsuarioDAO();
     /**
      * Creates new form cadastro
      */
@@ -34,8 +38,6 @@ public class Cadastro extends javax.swing.JFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
         jTextFieldSenha = new javax.swing.JTextField();
-        jLabelConfirmar = new javax.swing.JLabel();
-        jTextFieldConfirmar = new javax.swing.JTextField();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonEntrar = new javax.swing.JButton();
 
@@ -60,8 +62,6 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabelSenha.setText("Senha");
 
-        jLabelConfirmar.setText("Confirmar senha");
-
         javax.swing.GroupLayout jPanelInformacoesLayout = new javax.swing.GroupLayout(jPanelInformacoes);
         jPanelInformacoes.setLayout(jPanelInformacoesLayout);
         jPanelInformacoesLayout.setHorizontalGroup(
@@ -76,12 +76,10 @@ public class Cadastro extends javax.swing.JFrame {
                         .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(jPanelInformacoesLayout.createSequentialGroup()
                         .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelEmail)
-                            .addComponent(jLabelSenha)
-                            .addComponent(jLabelConfirmar))
+                            .addComponent(jLabelSenha))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelInformacoesLayout.setVerticalGroup(
@@ -99,11 +97,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelConfirmar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         jButtonCadastrar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -157,7 +151,13 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
+
+        String nome = jTextFieldNome.getText();
+        String email = jTextFieldEmail.getText();
+        String senha = jTextFieldSenha.getText();
+
+        usuario.createUsuario(new Usuario(nome, email, senha));
+        
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
@@ -207,13 +207,11 @@ public class Cadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JLabel jLabelConfirmar;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelInformacoes;
-    private javax.swing.JTextField jTextFieldConfirmar;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldSenha;

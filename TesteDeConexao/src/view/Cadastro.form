@@ -105,12 +105,10 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldConfirmar" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                               <Component id="jTextFieldSenha" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                               <Component id="jTextFieldEmail" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
                               <Component id="jLabelEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelConfirmar" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -133,11 +131,7 @@
                   <Component id="jLabelSenha" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFieldSenha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabelConfirmar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldConfirmar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="96" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -169,13 +163,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldSenha">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelConfirmar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Confirmar senha"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldConfirmar">
         </Component>
       </SubComponents>
     </Container>
