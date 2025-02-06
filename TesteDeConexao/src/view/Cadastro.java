@@ -30,8 +30,6 @@ public class Cadastro extends javax.swing.JFrame {
         jPanelInformacoes = new javax.swing.JPanel();
         jLabelNome = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jLabelCPF = new javax.swing.JLabel();
-        jTextFieldCPF = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
@@ -58,10 +56,6 @@ public class Cadastro extends javax.swing.JFrame {
 
         jTextFieldNome.setToolTipText("");
 
-        jLabelCPF.setText("CPF");
-
-        jTextFieldCPF.setToolTipText("");
-
         jLabelEmail.setText("Email");
 
         jTextFieldEmail.setToolTipText("");
@@ -84,8 +78,6 @@ public class Cadastro extends javax.swing.JFrame {
                         .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(jPanelInformacoesLayout.createSequentialGroup()
                         .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCPF)
-                            .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,11 +93,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelCPF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,10 +105,10 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelConfirmar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanelInformacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 360, 320));
+        getContentPane().add(jPanelInformacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 360, 280));
 
         jButtonCadastrar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jButtonCadastrar.setText("Cadastrar");
@@ -129,7 +117,7 @@ public class Cadastro extends javax.swing.JFrame {
                 jButtonCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 130, 30));
+        getContentPane().add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 130, 30));
 
         jButtonEntrar.setBackground(javax.swing.UIManager.getDefaults().getColor("window"));
         jButtonEntrar.setText("Entrar");
@@ -139,9 +127,9 @@ public class Cadastro extends javax.swing.JFrame {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, 20));
+        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, 20));
 
-        setBounds(0, 0, 400, 522);
+        setBounds(0, 0, 400, 502);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
@@ -195,14 +183,12 @@ public class Cadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JLabel jLabelCPF;
     private javax.swing.JLabel jLabelConfirmar;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelInformacoes;
-    private javax.swing.JTextField jTextFieldCPF;
     private javax.swing.JTextField jTextFieldConfirmar;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
