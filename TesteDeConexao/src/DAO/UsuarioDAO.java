@@ -84,7 +84,6 @@ public class UsuarioDAO {
         int id=0;
 
         String select = "SELECT id FROM usuario WHERE nome = ? AND email = ? AND senha = ?";
-        
         try {
             stmt = connection.prepareStatement(select);
             result = stmt.executeQuery();
@@ -100,6 +99,82 @@ public class UsuarioDAO {
         }
         
         return id;
+    }
+    
+    public Usuario selecionarUsuarioPorEmail(String email) {
+        
+        Connection connection = new ConexaoBD().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        Usuario usuario = new Usuario();
+        
+        String select = "SELECT * FROM usuario WHERE email = ?";
+        try {
+            stmt = connection.prepareStatement(select);
+            result = stmt.executeQuery();
+            
+            result.next();
+            
+            usuario.setEmail(result.getString("usuario.email"));
+            usuario.setNome(result.getString("usuario.nome"));
+            usuario.setSenha(result.getString("usuario.senha"));
+            usuario.setId(result.getInt("usuario.id"));
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao procurar o usuario: " + ex.getMessage());
+        } finally {
+            ConexaoBD.closeConnection(connection, stmt, result);
+        }
+        
+        return usuario;
+    }
+    
+    public boolean existeEmail(String email) {
+        
+        Connection connection = new ConexaoBD().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        String select = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+        try {
+            stmt = connection.prepareStatement(select);
+            stmt.setString(1, email);
+            result = stmt.executeQuery();
+
+            if (result.next()) {
+                int count = result.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao procurar email no bd: " + ex.getMessage());
+        }
+
+        return false; // Retorna false se ocorrer algum erro ou se o e-mail não existir
+    }
+    
+    public boolean existeEmail(String email, String senha) {
+        
+        Connection connection = new ConexaoBD().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        String select = "SELECT COUNT(*) FROM usuario WHERE email = ? AND senha = ?";
+        try {
+            stmt = connection.prepareStatement(select);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            result = stmt.executeQuery();
+
+            if (result.next()) {
+                int count = result.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao procurar email no bd: " + ex.getMessage());
+        }
+
+        return false; // Retorna false se ocorrer algum erro ou se o e-mail não existir
     }
     
     /*public static void main(String[] args) { PARA TESTES 

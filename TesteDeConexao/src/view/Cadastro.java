@@ -155,8 +155,18 @@ public class Cadastro extends javax.swing.JFrame {
         String nome = jTextFieldNome.getText();
         String email = jTextFieldEmail.getText();
         String senha = jTextFieldSenha.getText();
-
-        usuario.createUsuario(new Usuario(nome, email, senha));
+        
+        if (usuario.existeEmail(email)) {
+            JOptionPane.showMessageDialog(this, "Este e-mail já está cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            usuario.createUsuario(new Usuario(nome, email, senha));
+            JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
+            
+            Login login = new Login();
+            login.setVisible(true);
+        
+            this.dispose();
+        }
         
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 

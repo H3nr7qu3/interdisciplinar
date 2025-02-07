@@ -5,6 +5,10 @@ public class Usuario {
     protected int id;
     protected String nome, email, senha;
 
+    public Usuario() {
+        
+    }
+    
     public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
@@ -17,6 +21,9 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
     }
+
+    
+    
 
     public int getId() {
         return id;

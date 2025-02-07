@@ -1,18 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author matheus
- */
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
+    
+    UsuarioDAO usuario = new UsuarioDAO();
+    
     public Login() {
         initComponents();
     }
@@ -143,7 +142,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarActionPerformed
-        // TODO add your handling code here:
+        
         Recuperar recuperar = new Recuperar();
         recuperar.setVisible(true);
         
@@ -151,11 +150,21 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRecuperarActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-        // TODO add your handling code here:
+        
+        String email = jTextFieldEmail.getText();
+        String senha = jTextFieldSenha.getText();
+        
+        if (usuario.existeEmail(email, senha)) {
+            usuario.selecionarUsuarioPorEmail(email);
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Senha incorreta!");
+
+        }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
+        
         Cadastro cadastro = new Cadastro();
         cadastro.setVisible(true);
         
