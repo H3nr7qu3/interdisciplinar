@@ -1,7 +1,5 @@
 package DAO;
-
 import java.io.*;
-
 import java.net.*;
 import java.util.Base64;
 import java.util.List;
@@ -11,10 +9,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class ConexaoSockets {
-
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private BufferedReader input;
     private JFrame frame;
     private JLabel label;
 
@@ -36,8 +32,6 @@ public class ConexaoSockets {
             clientSocket = serverSocket.accept();
             System.out.println("Cliente conectado: " + clientSocket.getInetAddress());
 
-            input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
             // Recebe as mensagens
             List<String> base64DataList = receiveMessage();
 
@@ -57,19 +51,24 @@ public class ConexaoSockets {
 
         while (true) {
             line = input.readLine(); // Lê uma linha da mensagem
+            System.out.println("Mensagem recebida: " + line); // Log detalhado
+
             if (line == null || line.equals("FIM") || line.isEmpty()) {
                 break; // Finaliza o loop se a mensagem terminar
             }
 
-            // Verifica se a linha começa com "FRAME|"
-            if (line.startsWith("FRAME|")) {
+            // Verifica se a linha tem pelo menos 2 caracteres antes de "FRAME|"
+            if (line.length() > 2 && line.substring(2).startsWith("FRAME|")) {
+                // Remove os dois primeiros caracteres
+                String cleanedMessage = line.substring(2);
+
                 // Divide a mensagem em partes
-                String[] parts = line.split("\\|");
+                String[] parts = cleanedMessage.split("\\|");
                 if (parts.length == 3) { // Verifica se a mensagem está no formato correto
                     String base64Data = parts[2]; // Pega a parte Base64 da mensagem
                     list.add(base64Data); // Adiciona à lista
                 } else {
-                    System.err.println("Formato de mensagem inválido: " + line);
+                    System.err.println("Formato de mensagem inválido: " + cleanedMessage);
                 }
             } else {
                 System.err.println("Mensagem ignorada: " + line);
@@ -96,8 +95,10 @@ public class ConexaoSockets {
                     frame.revalidate();
                     frame.repaint();
                 }
+            } catch (IllegalArgumentException e) {
+                System.err.println("Erro ao decodificar Base64: Dados inválidos.");
             } catch (IOException e) {
-                System.err.println("Erro ao decodificar Base64: " + e.getMessage());
+                System.err.println("Erro ao ler a imagem: " + e.getMessage());
             }
         }
     }
