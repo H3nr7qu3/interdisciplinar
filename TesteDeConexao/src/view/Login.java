@@ -1,8 +1,9 @@
 package view;
 
 import DAO.UsuarioDAO;
+
 import javax.swing.JOptionPane;
-import model.Usuario;
+
 
 public class Login extends javax.swing.JFrame {
 
@@ -19,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -207,6 +209,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                
             }
         });
     }
