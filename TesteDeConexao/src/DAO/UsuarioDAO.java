@@ -12,6 +12,8 @@ import model.Usuario;
 
 public class UsuarioDAO {
     
+    Usuario userInfo = new Usuario();
+    
     public void createUsuario(Usuario usuario) {
         Connection connection = new ConexaoBD().getConnection();
         PreparedStatement stmt = null;
@@ -112,6 +114,7 @@ public class UsuarioDAO {
         String select = "SELECT * FROM usuario WHERE email = ?";
         try {
             stmt = connection.prepareStatement(select);
+            stmt.setString(1, email);
             result = stmt.executeQuery();
             
             result.next();
@@ -127,7 +130,7 @@ public class UsuarioDAO {
             ConexaoBD.closeConnection(connection, stmt, result);
         }
         
-        return usuario;
+        return userInfo = usuario;
     }
     
     public boolean existeEmail(String email) {
@@ -159,7 +162,7 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
         ResultSet result = null;
         
-        String select = "SELECT COUNT(*) FROM usuario WHERE email = ? AND senha = ?";
+        String select = "SELECT COUNT(*) FROM usuario WHERE (email = ? AND senha = ?)";
         try {
             stmt = connection.prepareStatement(select);
             stmt.setString(1, email);
