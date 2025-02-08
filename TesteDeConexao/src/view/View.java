@@ -4,6 +4,7 @@ import DAO.ConexaoSockets;
 import DAO.UsuarioDAO;
 import javax.swing.JLabel;
 import fabricaDeConexao.PegandoIP;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Usuario;
 
@@ -33,12 +34,15 @@ public class View extends javax.swing.JFrame {
 //        setLocationRelativeTo(null);
 
         initComponents();
+        //comando pra centralizar   
+      
+
         setLocationRelativeTo(null);
         //pegandoip();
     }
 
     public View() {
-//        setLocationRelativeTo(null);
+//   setLocationRelativeTo(null);
         initComponents();
         //pegandoip();
     }

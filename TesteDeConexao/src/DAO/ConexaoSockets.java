@@ -80,7 +80,8 @@ public class ConexaoSockets extends view.View {
                 }
                 System.out.println("Imagem salva com sucesso!");
                 exibirImagem(image);
-// Método hipotético para exibir a imagem na UI
+// Método hipotético para exibir a imagem na UI 
+                
             });
 
         } catch (IOException e) {
