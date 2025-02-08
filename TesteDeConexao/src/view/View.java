@@ -1,8 +1,11 @@
 package view;
 
 import DAO.ConexaoSockets;
+import DAO.UsuarioDAO;
 import javax.swing.JLabel;
 import fabricaDeConexao.PegandoIP;
+import javax.swing.JOptionPane;
+import model.Usuario;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,17 +17,32 @@ import fabricaDeConexao.PegandoIP;
  * @author Principal
  */
 public class View extends javax.swing.JFrame{
-
-    
     
     /**
      * Creates new form View
      */
-    public View() {
+    
+    //Recuperar recuperar = new Recuperar();
+    //Cadastro cadastro = new Cadastro();
+    //Login login = new Login();
+    
+    UsuarioDAO usuario = new UsuarioDAO();
+    Usuario userInfo = new Usuario();
+    //Usuario userInfo = new Usuario(8, "alguem", "alguem@gmail.com", "12345");
+    
+    public View(Usuario userInfo) {
+        this.userInfo = userInfo;
         initComponents();
-        pegandoip();
+        //pegandoip();
         
     }
+    
+    public View() {
+        initComponents();
+        //pegandoip();
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +64,13 @@ public class View extends javax.swing.JFrame{
         jButtonEditar = new javax.swing.JButton();
         jPanelImage = new javax.swing.JPanel();
         ImagemLabel = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
+        jLabelEmail1 = new javax.swing.JLabel();
+        jLabelEmail2 = new javax.swing.JLabel();
+        jButttonLogout = new javax.swing.JButton();
+        jButtonAlterarNome = new javax.swing.JButton();
+        jButtonAlterarSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,8 +145,11 @@ public class View extends javax.swing.JFrame{
                     .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jButtonEditar)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
+
+        jPanelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanelImage.setPreferredSize(new java.awt.Dimension(450, 450));
 
         javax.swing.GroupLayout jPanelImageLayout = new javax.swing.GroupLayout(jPanelImage);
         jPanelImage.setLayout(jPanelImageLayout);
@@ -130,45 +158,109 @@ public class View extends javax.swing.JFrame{
             .addGroup(jPanelImageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ImagemLabel)
-                .addContainerGap(514, Short.MAX_VALUE))
+                .addContainerGap(442, Short.MAX_VALUE))
         );
         jPanelImageLayout.setVerticalGroup(
             jPanelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelImageLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(ImagemLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
+
+        jLabelTitulo.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabelTitulo.setText("Usuário");
+
+        jLabelNome.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabelNome.setText("Seja bem-vindo(a), " + userInfo.getNome());
+        jLabelNome.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabelNome.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        jLabelEmail1.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabelEmail1.setText("Email: ");
+
+        jLabelEmail2.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabelEmail2.setText(userInfo.getEmail());
+
+        jButttonLogout.setText("Logout");
+        jButttonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButttonLogoutActionPerformed(evt);
+            }
+        });
+
+        jButtonAlterarNome.setBackground(getBackground());
+        jButtonAlterarNome.setText("Alterar Nome");
+        jButtonAlterarNome.setBorder(null);
+        jButtonAlterarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarNomeActionPerformed(evt);
+            }
+        });
+
+        jButtonAlterarSenha.setBackground(getBackground());
+        jButtonAlterarSenha.setText("Alterar Senha");
+        jButtonAlterarSenha.setBorder(null);
+        jButtonAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                    .addComponent(jLabelTitulo)
+                    .addComponent(jLabelNome)
+                    .addComponent(jLabelEmail1)
+                    .addComponent(jLabelEmail2)
+                    .addComponent(jButttonLogout)
+                    .addComponent(jButtonAlterarNome)
+                    .addComponent(jButtonAlterarSenha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelConexao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelConexao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(17, 17, 17)))
-                .addContainerGap())
+                        .addComponent(jPanelConexao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAlterarNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAlterarSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelEmail1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEmail2)
+                        .addGap(98, 98, 98)))
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButttonLogout)
+                    .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,6 +280,34 @@ public class View extends javax.swing.JFrame{
         jLabelVerPorta.setText( jTextFieldPorta.getText());
         ConexaoSockets Trata = new ConexaoSockets( Integer.parseInt(portaI));
     }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButttonLogoutActionPerformed
+        usuario = new UsuarioDAO();
+        
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButttonLogoutActionPerformed
+
+    private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
+        String novaSenha = JOptionPane.showInputDialog(this, "Nova senha:");
+        if(novaSenha != null) {
+            userInfo.setSenha(novaSenha);
+            usuario.updateUsuario(userInfo);
+            JOptionPane.showMessageDialog(this, ("Senha atualizada!"));
+        }
+    }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
+
+    private void jButtonAlterarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarNomeActionPerformed
+        String novoNome = JOptionPane.showInputDialog(this, "Novo nome:");
+        if(novoNome != null) {
+            userInfo.setNome(novoNome);
+            usuario.updateUsuario(userInfo);
+
+            JOptionPane.showMessageDialog(this, ("Nome atualizado, " + novoNome));
+            jLabelNome.setText("Seja bem-vindo(a), " + userInfo.getNome());
+        }
+    }//GEN-LAST:event_jButtonAlterarNomeActionPerformed
 
     public JLabel getImagemLabel() {
         return ImagemLabel;
@@ -225,6 +345,7 @@ public class View extends javax.swing.JFrame{
         //</editor-fold>
         
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new View().setVisible(true);
@@ -242,10 +363,17 @@ public class View extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IjLabelVerIP;
     private javax.swing.JLabel ImagemLabel;
+    private javax.swing.JButton jButtonAlterarNome;
+    private javax.swing.JButton jButtonAlterarSenha;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButttonLogout;
     private javax.swing.JLabel jLabelConectarPorta;
+    private javax.swing.JLabel jLabelEmail1;
+    private javax.swing.JLabel jLabelEmail2;
     private javax.swing.JLabel jLabelIP;
+    protected javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelPorta;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelVerPorta;
     private javax.swing.JPanel jPanelConexao;
     private javax.swing.JPanel jPanelDados;

@@ -37,7 +37,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabelEmail = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
-        jTextFieldSenha = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonEntrar = new javax.swing.JButton();
 
@@ -76,10 +76,10 @@ public class Cadastro extends javax.swing.JFrame {
                         .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(jPanelInformacoesLayout.createSequentialGroup()
                         .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelEmail)
-                            .addComponent(jLabelSenha))
+                            .addComponent(jLabelSenha)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelInformacoesLayout.setVerticalGroup(
@@ -96,7 +96,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(96, Short.MAX_VALUE))
         );
 
@@ -154,9 +154,19 @@ public class Cadastro extends javax.swing.JFrame {
 
         String nome = jTextFieldNome.getText();
         String email = jTextFieldEmail.getText();
-        String senha = jTextFieldSenha.getText();
-
-        usuario.createUsuario(new Usuario(nome, email, senha));
+        String senha = jPasswordField.getText();
+        
+        if (usuario.existeEmail(email)) {
+            JOptionPane.showMessageDialog(this, "Este e-mail já está cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            usuario.createUsuario(new Usuario(nome, email, senha));
+            JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
+            
+            Login login = new Login();
+            login.setVisible(true);
+        
+            this.dispose();
+        }
         
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -212,8 +222,8 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelInformacoes;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }

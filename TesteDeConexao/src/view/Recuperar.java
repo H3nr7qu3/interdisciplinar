@@ -4,12 +4,21 @@
  */
 package view;
 
+import DAO.RecuperarEmailDAO;
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 /**
  *
  * @author matheus
  */
 public class Recuperar extends javax.swing.JFrame {
 
+    UsuarioDAO usuario = new UsuarioDAO();
+    RecuperarEmailDAO enviarEmail = new RecuperarEmailDAO();
+    Login login = new Login();
+    
     /**
      * Creates new form Recuperar
      */
@@ -35,10 +44,10 @@ public class Recuperar extends javax.swing.JFrame {
         jLabelSenha = new javax.swing.JLabel();
         jTextFieldSenha = new javax.swing.JTextField();
         jLabelConfirmar = new javax.swing.JLabel();
-        jTextFieldConfirmar = new javax.swing.JTextField();
         jButtonEnviar = new javax.swing.JButton();
         jTextFieldCodigo = new javax.swing.JTextField();
         jLabelCodigo = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,19 +92,20 @@ public class Recuperar extends javax.swing.JFrame {
             jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInformacoesLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelConfirmar)
-                    .addComponent(jLabelEmail)
-                    .addGroup(jPanelInformacoesLayout.createSequentialGroup()
-                        .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCodigo)
-                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabelSenha)
-                    .addComponent(jTextFieldEmail))
+                .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelConfirmar)
+                        .addComponent(jLabelEmail)
+                        .addGroup(jPanelInformacoesLayout.createSequentialGroup()
+                            .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelCodigo)
+                                .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelSenha)
+                        .addComponent(jTextFieldEmail))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanelInformacoesLayout.setVerticalGroup(
@@ -119,7 +129,7 @@ public class Recuperar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelConfirmar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -132,7 +142,6 @@ public class Recuperar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelSubtitulo)))
-
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,22 +156,45 @@ public class Recuperar extends javax.swing.JFrame {
                 .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelSubtitulo)
-
                 .addGap(14, 14, 14)
                 .addComponent(jPanelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButtonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setBounds(0, 0, 416, 408);
+        setBounds(0, 0, 420, 422);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarActionPerformed
-        // TODO add your handling code here:
+        String email = jTextFieldEmail.getText();
+        String codigo = jTextFieldCodigo.getText();
+        String senha = jTextFieldSenha.getText();
+        
+        System.out.println(enviarEmail.getSenhaGerada());
+        System.out.println(codigo);
+        if(codigo.equals(enviarEmail.getSenhaGerada())) {
+            if(senha.equals(jPasswordField.getText())) {
+                Usuario userInfo = usuario.selecionarUsuarioPorEmail(email);
+                userInfo.setSenha(senha);
+                usuario.updateUsuario(userInfo);
+                
+                login.setVisible(true);
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Campos de senhas distintos!");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Código incorreto");
+        }
     }//GEN-LAST:event_jButtonRecuperarActionPerformed
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        // TODO add your handling code here:
+        String email = jTextFieldEmail.getText();
+        
+        enviarEmail = new RecuperarEmailDAO();
+        enviarEmail.EnviarMensagem(email);
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     /**
@@ -210,8 +242,8 @@ public class Recuperar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSubtitulo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelInformacoes;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldConfirmar;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables

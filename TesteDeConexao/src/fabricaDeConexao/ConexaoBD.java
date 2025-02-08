@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class ConexaoBD {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://195.200.2.145:3306/BD_MatheusHenrique";
+    private static final String URL = "jdbc:mysql://195.200.2.145:3306/DB_MatheusHenrique";
     private static final String USUARIO = "alunosMatheusH";
     private static final String SENHA = "interdisc_Pr@g2";
     

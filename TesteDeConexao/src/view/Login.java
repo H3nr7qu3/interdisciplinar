@@ -1,18 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author matheus
- */
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
+    
+    UsuarioDAO usuario = new UsuarioDAO();
+    
+    //Recuperar recuperar = new Recuperar();
+    //View view = new View();
+    //Cadastro cadastro = new Cadastro();
+    
+    
     public Login() {
         initComponents();
     }
@@ -33,8 +37,8 @@ public class Login extends javax.swing.JFrame {
         jPanelInformacoes = new javax.swing.JPanel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
-        jTextFieldSenha = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +87,10 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanelInformacoesLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelEmail)
-                    .addComponent(jLabelSenha))
+                    .addComponent(jLabelSenha)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanelInformacoesLayout.setVerticalGroup(
@@ -99,7 +103,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -143,22 +147,31 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarActionPerformed
-        // TODO add your handling code here:
         Recuperar recuperar = new Recuperar();
         recuperar.setVisible(true);
-        
         this.dispose();
     }//GEN-LAST:event_jButtonRecuperarActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-        // TODO add your handling code here:
+        
+        String email = jTextFieldEmail.getText();
+        String senha = jPasswordField.getText();
+        
+        if (usuario.existeEmail(email, senha)) {
+            
+            View view = new View(usuario.selecionarUsuarioPorEmail(email));
+            view.setVisible(true);
+            this.dispose();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Email e/ou senha incorreto(s)!");
+
+        }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
         Cadastro cadastro = new Cadastro();
         cadastro.setVisible(true);
-        
         this.dispose();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -206,7 +219,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelInformacoes;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }
