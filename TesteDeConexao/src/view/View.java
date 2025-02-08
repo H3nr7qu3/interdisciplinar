@@ -11,38 +11,37 @@ import model.Usuario;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Principal
  */
-public class View extends javax.swing.JFrame{
-    
+public class View extends javax.swing.JFrame {
+
     /**
      * Creates new form View
      */
-    
     //Recuperar recuperar = new Recuperar();
     //Cadastro cadastro = new Cadastro();
     //Login login = new Login();
-    
     UsuarioDAO usuario = new UsuarioDAO();
     Usuario userInfo = new Usuario();
     //Usuario userInfo = new Usuario(8, "alguem", "alguem@gmail.com", "12345");
-    
+
     public View(Usuario userInfo) {
+
         this.userInfo = userInfo;
+//        setLocationRelativeTo(null);
+
         initComponents();
+        setLocationRelativeTo(null);
         //pegandoip();
-        
     }
-    
+
     public View() {
+//        setLocationRelativeTo(null);
         initComponents();
         //pegandoip();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -277,13 +276,13 @@ public class View extends javax.swing.JFrame{
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         // TODO add your handling code here:
         String portaI = jTextFieldPorta.getText();
-        jLabelVerPorta.setText( jTextFieldPorta.getText());
-        ConexaoSockets Trata = new ConexaoSockets( Integer.parseInt(portaI));
+        jLabelVerPorta.setText(jTextFieldPorta.getText());
+        ConexaoSockets Trata = new ConexaoSockets(Integer.parseInt(portaI));
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButttonLogoutActionPerformed
         usuario = new UsuarioDAO();
-        
+
         Login login = new Login();
         login.setVisible(true);
         this.dispose();
@@ -291,7 +290,7 @@ public class View extends javax.swing.JFrame{
 
     private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
         String novaSenha = JOptionPane.showInputDialog(this, "Nova senha:");
-        if(novaSenha != null) {
+        if (novaSenha != null) {
             userInfo.setSenha(novaSenha);
             usuario.updateUsuario(userInfo);
             JOptionPane.showMessageDialog(this, ("Senha atualizada!"));
@@ -300,7 +299,7 @@ public class View extends javax.swing.JFrame{
 
     private void jButtonAlterarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarNomeActionPerformed
         String novoNome = JOptionPane.showInputDialog(this, "Novo nome:");
-        if(novoNome != null) {
+        if (novoNome != null) {
             userInfo.setNome(novoNome);
             usuario.updateUsuario(userInfo);
 
@@ -355,9 +354,9 @@ public class View extends javax.swing.JFrame{
 //        
 //       
 //    }
-    void pegandoip(){
-         PegandoIP ip = new PegandoIP();
-         IjLabelVerIP.setText(ip.PickIP());
+    void pegandoip() {
+        PegandoIP ip = new PegandoIP();
+        IjLabelVerIP.setText(ip.PickIP());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
