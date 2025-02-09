@@ -18,7 +18,7 @@ import model.Usuario;
  *
  * @author Principal
  */
-public class View extends javax.swing.JFrame {
+public final class View extends javax.swing.JFrame {
 
     /**
      * Creates new form View
@@ -41,6 +41,8 @@ public class View extends javax.swing.JFrame {
 //        servidor.iniciarServidor();
 
         initComponents();
+        setLocationRelativeTo(null);
+        pegandoip();
         //comando pra centralizar   
 //        ImageLABEL.setPreferredSize(new Dimension(450, 450));
 //        jPanelImage.add(ImageLABEL, BorderLayout.CENTER);
@@ -70,6 +72,7 @@ public class View extends javax.swing.JFrame {
         IjLabelVerIP = new javax.swing.JLabel();
         jLabelPorta = new javax.swing.JLabel();
         jLabelVerPorta = new javax.swing.JLabel();
+        ipLabel = new javax.swing.JLabel();
         jPanelConexao = new javax.swing.JPanel();
         jLabelConectarPorta = new javax.swing.JLabel();
         jTextFieldPorta = new javax.swing.JTextField();
@@ -91,6 +94,8 @@ public class View extends javax.swing.JFrame {
 
         jLabelPorta.setText("porta:");
 
+        ipLabel.setText("jLabel1");
+
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
         jPanelDadosLayout.setHorizontalGroup(
@@ -101,12 +106,14 @@ public class View extends javax.swing.JFrame {
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addComponent(jLabelIP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IjLabelVerIP))
+                        .addComponent(IjLabelVerIP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ipLabel))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addComponent(jLabelPorta)
                         .addGap(26, 26, 26)
                         .addComponent(jLabelVerPorta)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanelDadosLayout.setVerticalGroup(
             jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +121,8 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIP)
-                    .addComponent(IjLabelVerIP))
+                    .addComponent(IjLabelVerIP)
+                    .addComponent(ipLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPorta)
@@ -244,12 +252,9 @@ public class View extends javax.swing.JFrame {
                 .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanelConexao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                    .addComponent(jPanelConexao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,14 +381,19 @@ public class View extends javax.swing.JFrame {
     }
 
     void pegandoip() {
-        PegandoIP ip = new PegandoIP();
-        IjLabelVerIP.setText(ip.PickIP());
+        if (ipLabel != null) { // Verifica se ipLabel foi inicializado
+            PegandoIP ip = new PegandoIP();
+            ipLabel.setText(ip.PickIP()); // Atualiza o texto do JLabel
+        } else {
+            System.err.println("Erro: ipLabel não foi inicializado.");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IjLabelVerIP;
     private javax.swing.JLabel ImageLABEL;
     private javax.swing.JLabel ImagemLabel;
+    private javax.swing.JLabel ipLabel;
     private javax.swing.JButton jButtonAlterarNome;
     private javax.swing.JButton jButtonAlterarSenha;
     private javax.swing.JButton jButtonEditar;

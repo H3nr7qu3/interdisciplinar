@@ -9,6 +9,7 @@ package fabricaDeConexao;
  * @author Principal
  */
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class PegandoIP {
@@ -45,7 +46,7 @@ public class PegandoIP {
             }
 
             reader.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return ip;
