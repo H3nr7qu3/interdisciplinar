@@ -226,17 +226,22 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ImagemLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="442" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="ImagemLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="ImageLABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="439" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="ImageLABEL" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                   <Component id="ImagemLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="332" max="32767" attributes="0"/>
               </Group>
@@ -245,6 +250,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="ImagemLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="ImageLABEL">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="."/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

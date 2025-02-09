@@ -1,9 +1,11 @@
 package view;
 
-import DAO.ConexaoSockets;
+import DAO.Servidor;
 import DAO.UsuarioDAO;
 import javax.swing.JLabel;
 import fabricaDeConexao.PegandoIP;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -32,19 +34,26 @@ public class View extends javax.swing.JFrame {
 
         this.userInfo = userInfo;
 //        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+        pegandoip();
+        // Inicia o servidor
+//        Servidor servidor = new Servidor(ImagemLabel);
+//        servidor.iniciarServidor();
 
         initComponents();
         //comando pra centralizar   
-      
+//        ImageLABEL.setPreferredSize(new Dimension(450, 450));
+//        jPanelImage.add(ImageLABEL, BorderLayout.CENTER);
 
-        setLocationRelativeTo(null);
-        //pegandoip();
     }
 
     public View() {
-//   setLocationRelativeTo(null);
+
         initComponents();
-        //pegandoip();
+        pegandoip();
+        setLocationRelativeTo(null);
+        ImageLABEL.setPreferredSize(new Dimension(450, 450));
+        jPanelImage.add(ImageLABEL, BorderLayout.CENTER);
     }
 
     /**
@@ -67,6 +76,7 @@ public class View extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jPanelImage = new javax.swing.JPanel();
         ImagemLabel = new javax.swing.JLabel();
+        ImageLABEL = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelEmail1 = new javax.swing.JLabel();
@@ -154,19 +164,25 @@ public class View extends javax.swing.JFrame {
         jPanelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanelImage.setPreferredSize(new java.awt.Dimension(450, 450));
 
+        ImageLABEL.setText(".");
+
         javax.swing.GroupLayout jPanelImageLayout = new javax.swing.GroupLayout(jPanelImage);
         jPanelImage.setLayout(jPanelImageLayout);
         jPanelImageLayout.setHorizontalGroup(
             jPanelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelImageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ImagemLabel)
-                .addContainerGap(442, Short.MAX_VALUE))
+                .addGroup(jPanelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ImagemLabel)
+                    .addComponent(ImageLABEL))
+                .addContainerGap(439, Short.MAX_VALUE))
         );
         jPanelImageLayout.setVerticalGroup(
             jPanelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelImageLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addContainerGap()
+                .addComponent(ImageLABEL)
+                .addGap(94, 94, 94)
                 .addComponent(ImagemLabel)
                 .addContainerGap(332, Short.MAX_VALUE))
         );
@@ -278,10 +294,13 @@ public class View extends javax.swing.JFrame {
     }
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
-        String portaI = jTextFieldPorta.getText();
+
+        int portaI = Integer.parseInt(jTextFieldPorta.getText());
         jLabelVerPorta.setText(jTextFieldPorta.getText());
-        ConexaoSockets Trata = new ConexaoSockets(Integer.parseInt(portaI));
+        Servidor servidor;
+        jTextFieldPorta.setText("");
+        servidor = new Servidor(ImagemLabel, portaI);
+        servidor.iniciarServidor();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButttonLogoutActionPerformed
@@ -323,41 +342,39 @@ public class View extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        
-//        /* Create and display the form */
-//        
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new View().setVisible(true);
-//            }
-//        });
-//        
-//        
-//       
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new View().setVisible(true);
+            }
+        });
+
+    }
+
     void pegandoip() {
         PegandoIP ip = new PegandoIP();
         IjLabelVerIP.setText(ip.PickIP());
@@ -365,6 +382,7 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IjLabelVerIP;
+    private javax.swing.JLabel ImageLABEL;
     private javax.swing.JLabel ImagemLabel;
     private javax.swing.JButton jButtonAlterarNome;
     private javax.swing.JButton jButtonAlterarSenha;

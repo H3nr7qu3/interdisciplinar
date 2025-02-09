@@ -16,7 +16,7 @@ public class PegandoIP {
     private static String ip;
 
     public String PickIP() {
-            int numeroDeVezes = 1;
+            int numeroDeVezes = 6;
         try {
             ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "chcp 850 & ipconfig");
             Process process = pb.start();
