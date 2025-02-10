@@ -9,8 +9,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Base64;
 import javax.imageio.ImageIO;
+import org.opencv.core.Core;
+//import org.opencv.core.Mat;
+//import org.opencv.core.MatOfByte;
+//import org.opencv.imgcodecs.Imgcodecs;
 
 public class Servidor {
+    
     private JLabel labelImagem; // JLabel que será atualizado com a imagem recebida
     private int porta;
     // Construtor que recebe um JLabel como parâmetro
@@ -47,15 +52,19 @@ public class Servidor {
 
     // Método para exibir a imagem no JLabel
    private void mostrarImagem(String base64) {
+       System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     try {
         // Decodifica a imagem Base64
         byte[] imageBytes = Base64.getDecoder().decode(base64);
         ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
         BufferedImage imagem = ImageIO.read(bais);
+//        MatOfByte matOfByte = new MatOfByte(imageBytes);
+//        Mat mat = Imgcodecs.imdecode(matOfByte, Imgcodecs.IMREAD_COLOR);
 
         if (imagem != null) {
             // Redimensiona a imagem para 450x450 pixels
             Image imagemRedimensionada = imagem.getScaledInstance(450, 450, Image.SCALE_SMOOTH);
+//            FaceDetector face = new FaceDetector(mat);
             ImageIcon icon = new ImageIcon(imagemRedimensionada);
 
             // Atualiza o JLabel com a nova imagem
