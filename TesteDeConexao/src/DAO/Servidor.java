@@ -52,8 +52,9 @@ public class Servidor {
 
     // Método para exibir a imagem no JLabel
    private void mostrarImagem(String base64) {
-       System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+       
     try {
+       // System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         // Decodifica a imagem Base64
         byte[] imageBytes = Base64.getDecoder().decode(base64);
         ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
