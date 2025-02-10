@@ -174,11 +174,12 @@ public class Recuperar extends javax.swing.JFrame {
         System.out.println(enviarEmail.getSenhaGerada());
         System.out.println(codigo);
         if(codigo.equals(enviarEmail.getSenhaGerada())) {
+            
             if(senha.equals(jPasswordField.getText())) {
                 Usuario userInfo = usuario.selecionarUsuarioPorEmail(email);
                 userInfo.setSenha(senha);
                 usuario.updateUsuario(userInfo);
-                
+
                 login.setVisible(true);
                 this.dispose();
             }
@@ -193,9 +194,15 @@ public class Recuperar extends javax.swing.JFrame {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         String email = jTextFieldEmail.getText();
+        if (usuario.existeEmail(email)) {
+            enviarEmail = new RecuperarEmailDAO();
+            enviarEmail.EnviarMensagem(email);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Email não cadastrado!");
+
+        }
         
-        enviarEmail = new RecuperarEmailDAO();
-        enviarEmail.EnviarMensagem(email);
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     /**
