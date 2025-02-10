@@ -1,5 +1,4 @@
 package DAO;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.*;
@@ -9,7 +8,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Base64;
 import javax.imageio.ImageIO;
-import org.opencv.core.Core;
 //import org.opencv.core.Mat;
 //import org.opencv.core.MatOfByte;
 //import org.opencv.imgcodecs.Imgcodecs;
